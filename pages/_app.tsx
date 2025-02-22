@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Esteban, Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 import {
   NavigationMenu,
@@ -22,6 +22,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const esteban = Esteban({
+  variable: '--font-esteban',
+  subsets: ['latin'],
+  weight: '400',
 });
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -37,8 +37,13 @@ export function NavBar() {
   return (
     <div className="bg-opacity-30 backdrop-blur-md p-4 w-full sticky top-0 flex-1 z-10 flex justify-start items-center space-x-4">
       <Link href="/" passHref className="flex items-center space-x-2 text-xl">
-        {/* <Icons.Logo className="w-8 h-8" /> */}
-        ArthroTrack
+        <img
+          src="/logo.png"
+          alt="ArthroTrack Logo"
+          className="w-8 h-8 rounded-full"
+          loading="lazy"
+        />
+        <span>ArthroTrack</span>
       </Link>
       <NavBarItems />
     </div>
