@@ -65,6 +65,7 @@ export async function createPatient(patientData: Omit<Patient, 'id' | 'created_a
   );
   
   // Retrieve the created patient using the last inserted id
+  if (result.lastID === undefined) throw new Error('Failed to create patient');
   const newPatient = await getPatientById(result.lastID);
   if (!newPatient) throw new Error('Failed to create patient');
   return newPatient;
@@ -116,5 +117,5 @@ export async function updatePatient(
 export async function deletePatient(id: number): Promise<boolean> {
   const db = await getDB();
   const result = await db.run('DELETE FROM patients WHERE id = ?', id);
-  return result.changes > 0;
+  return result.changes !== undefined && result.changes > 0;
 }

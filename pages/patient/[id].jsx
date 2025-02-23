@@ -1,4 +1,4 @@
-import { useState, SetStateAction } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { Card } from '../../components/ui/card';
@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 // New Deletion Alert Dialog Component
-const DeletionRequestAlertDialog = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const DeletionRequestAlertDialog = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
@@ -43,7 +43,7 @@ const DeletionRequestAlertDialog = ({ isOpen, onClose }: { isOpen: boolean; onCl
   );
 };
 
-export default function PatientPage({ patientData }: { patientData: any }) {
+export default function PatientPage({ patientData }) {
   const router = useRouter();
 
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -60,7 +60,7 @@ export default function PatientPage({ patientData }: { patientData: any }) {
   }
 
   // Handle Save Changes in Edit Modal
-  const handleSave = (updatedPatient: SetStateAction<{ id: number; name: string; email: string; age: number; sex: string; medicalHistory: string; medications: { name: string; dosage: string; frequency: string; }[]; allergies: { name: string; }[]; statistics: { temperature: number; bloodPressure: string; ECG: string; SPO2: number; respiratoryRate: number; bloodGlucose: number; }; } | null>) => {
+  const handleSave = (updatedPatient) => {
     setPatientData(updatedPatient);
     setIsEditOpen(false);
   };
@@ -99,7 +99,7 @@ export default function PatientPage({ patientData }: { patientData: any }) {
             <div className="w-full lg:w-1/2">
               <h3 className="text-lg font-semibold">Medications</h3>
               <ul className="text-sm text-gray-600 dark:text-gray-300">
-                {data.medications.map((med: { name: string; dosage: string; frequency: string }, index: number) => (
+                {data.medications.map((med, index) => (
                   <li key={index}>
                   {med.name} - {med.dosage} ({med.frequency})
                   </li>
@@ -163,8 +163,8 @@ export default function PatientPage({ patientData }: { patientData: any }) {
 }
 
 // Fetch patient data on the server side
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params as { id: string };
+export const getServerSideProps = async (context) => {
+  const { id } = context.params;
   const patientData = patients.find((p) => p.id === Number(id)) || null;
 
   return {

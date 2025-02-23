@@ -4,12 +4,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function EditPatient({ patient, isOpen, onClose, onSave }) {
+interface Patient {
+  name: string;
+  age: number;
+  sex: string;
+  medicalHistory: string;
+}
+
+interface EditPatientProps {
+  patient: Patient;
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (patient: Patient) => void;
+}
+
+export default function EditPatient({ patient, isOpen, onClose, onSave }: EditPatientProps) {
   const [editedPatient, setEditedPatient] = useState({ ...patient });
 
-  const handleChange = (e) => {
+  interface HandleChangeEvent {
+    target: {
+      name: string;
+      value: string;
+    };
+  }
+
+  const handleChange = (e: HandleChangeEvent) => {
     const { name, value } = e.target;
-    setEditedPatient((prev: any) => ({ ...prev, [name]: value }));
+    setEditedPatient((prev: Patient) => ({ ...prev, [name]: value }));
   };
 
   return (
