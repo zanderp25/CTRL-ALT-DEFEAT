@@ -52,7 +52,7 @@ export default async function handler(
     const db = await dbPromise;
 
     if (req.method === 'GET') {
-      const patient: Patient = await db.get(
+      const patient = await db.get<Patient>(
         'SELECT * FROM patients WHERE id = ?',
         parsedId
       );
@@ -65,10 +65,10 @@ export default async function handler(
 
       const result = await db.run(
         `UPDATE patients
-         SET name = $name, email = $email, age = $age, sex = $sex, 
-             medicalHistory = $medicalHistory, medications = $medications, 
-             allergies = $allergies, statistics = $statistics
-         WHERE id = $id`,
+        SET name = $name, email = $email, age = $age, sex = $sex, 
+            medicalHistory = $medicalHistory, medications = $medications, 
+            allergies = $allergies, statistics = $statistics
+        WHERE id = $id`,
         {
           $id: parsedId,
           $name: name,
@@ -86,10 +86,13 @@ export default async function handler(
         return res.status(404).json({ message: 'Patient not found' });
       }
 
-      const updatedPatient: Patient = await db.get(
+      const updatedPatient = await db.get<Patient>(
         'SELECT * FROM patients WHERE id = ?',
         parsedId
       );
+      if (!updatedPatient) {
+        return res.status(404).json({ message: 'Patient not found' });
+      }
       return res.status(200).json(updatedPatient);
     } else if (req.method === 'DELETE') {
       const result = await db.run(

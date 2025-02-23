@@ -19,8 +19,13 @@ const CalendarCard = () => {
   const [date, setDate] = useState(new Date());
   const router = useRouter();
 
+  interface OperationEvent extends Event {
+    id: string;
+    surgeon: string;
+  }
+
   // SAMPLE STATICDATA 
-  const operationsData = [
+  const operationsData: OperationEvent[] = [
     {
       id: "1",
       title: "Appendectomy",
@@ -45,7 +50,7 @@ const CalendarCard = () => {
   ];
 
   // Function to navigate to the operation details page
-  const handleEventSelect = (event: Event) => {
+  const handleEventSelect = (event: OperationEvent) => {
     router.push(`/operation/${event.id}`); // Navigate to operation details
   };
 
