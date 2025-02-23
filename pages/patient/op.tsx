@@ -1,6 +1,7 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@radix-ui/react-accordion';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function OpPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ export default function OpPage() {
   });
 
   const [activeTab, setActiveTab] = useState("item1");
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
   const handleSignatureChange = (section: keyof typeof formData, index: number, value: string) => {
     setFormData((prev) => ({
@@ -41,6 +44,11 @@ export default function OpPage() {
     setActiveTab(value);
   };
 
+  // Handler for STOP buttons to show confirmation modal
+  const handleStopClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen p-6 bg-gray-100 dark:bg-gray-900">
       <div className="w-full max-w-4xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -55,7 +63,7 @@ export default function OpPage() {
                 Pre-Operation
               </AccordionTrigger>
               {activeTab === "item1" && (
-                <Button variant="destructive" className="bg-red-600 hover:bg-red-700">
+                <Button variant="destructive" className="bg-red-600 hover:bg-red-700" onClick={handleStopClick}>
                   STOP
                 </Button>
               )}
@@ -67,7 +75,7 @@ export default function OpPage() {
 
               {/* Checkboxes */}
               <div className="flex flex-col space-y-2 mb-4">
-              <label>
+                <label>
                   <input 
                     type="checkbox" 
                     checked={formData.item1.checkboxes[0]}
@@ -120,7 +128,7 @@ export default function OpPage() {
                 Intra-Operation
               </AccordionTrigger>
               {activeTab === "item2" && (
-                <Button variant="destructive" className="bg-red-600 hover:bg-red-700">
+                <Button variant="destructive" className="bg-red-600 hover:bg-red-700" onClick={handleStopClick}>
                   STOP
                 </Button>
               )}
@@ -132,8 +140,7 @@ export default function OpPage() {
 
               {/* Checkboxes */}
               <div className="flex flex-col space-y-2 mb-4">
-            
-              <label>
+                <label>
                   <input 
                     type="checkbox" 
                     checked={formData.item2.checkboxes[0]}
@@ -155,9 +162,8 @@ export default function OpPage() {
                     checked={formData.item2.checkboxes[2]}
                     onChange={() => handleCheckboxChange("item2", 2)}
                   />
-                  Hemostasis:Ensure clamping using Kelly hemostatic clamp is sufficiently placed 
+                  Hemostasis: Ensure clamping using Kelly hemostatic clamp is sufficiently placed 
                 </label>
-              
               </div>
 
               {/* E-Signature Fields */}
@@ -187,7 +193,7 @@ export default function OpPage() {
                 Post-Operation Care
               </AccordionTrigger>
               {activeTab === "item3" && (
-                <Button variant="destructive" className="bg-red-600 hover:bg-red-700">
+                <Button variant="destructive" className="bg-red-600 hover:bg-red-700" onClick={handleStopClick}>
                   STOP
                 </Button>
               )}
@@ -213,7 +219,7 @@ export default function OpPage() {
                     checked={formData.item3.checkboxes[1]}
                     onChange={() => handleCheckboxChange("item3", 1)}
                   />
-                  Staples/Sutures Check:Confirm sutures or staples are sufficient for healing
+                  Staples/Sutures Check: Confirm sutures or staples are sufficient for healing
                 </label>
                 <label>
                   <input 
@@ -221,7 +227,7 @@ export default function OpPage() {
                     checked={formData.item3.checkboxes[2]}
                     onChange={() => handleCheckboxChange("item3", 2)}
                   />
-                  Tool-Count:Swann-Morton #10 Blade, Kelly Hemostatic Forceps, Mayo-Hegar Needle Holder, Lap Sponge
+                  Tool-Count: Swann-Morton #10 Blade, Kelly Hemostatic Forceps, Mayo-Hegar Needle Holder, Lap Sponge
                 </label>
               </div>
               {/* E-Signature Fields */}
@@ -246,9 +252,30 @@ export default function OpPage() {
         </Accordion>
 
         {isSectionComplete("item3") && (
-            <a className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded block" href="/dashboard">
+          <a className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded block" href="/dashboard">
             Continue
-            </a>
+          </a>
+        )}
+
+        {/* Modal Popup for STOP Confirmation */}
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div 
+              className="absolute inset-0 bg-black opacity-50" 
+              onClick={() => setShowModal(false)}
+            ></div>
+            <div className="relative bg-white p-6 rounded shadow-lg z-10">
+              <h2 className="text-xl font-bold mb-4">Are you sure?</h2>
+              <div className="flex justify-end space-x-4">
+                <Button onClick={() => setShowModal(false)}>
+                  No
+                </Button>
+                <Button variant="destructive" onClick={() => router.push('/dashboard')}>
+                  Yes
+                </Button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
