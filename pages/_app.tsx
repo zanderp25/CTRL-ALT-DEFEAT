@@ -38,9 +38,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
-      ></ThemeProvider>
-      <NavBar />
-      <Component {...pageProps} />
+      >
+        <NavBar />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </div>
   );
 }

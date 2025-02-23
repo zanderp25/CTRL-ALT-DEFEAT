@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "name": "Sandra Smith",
+    "email": "sandra@email.com",
+    "age": 62,
+    "sex": "F",
+    "medicalHistory": "Patient has a history of high blood pressure and diabetes.",
+    "medications": [
+      {
+        "name": "Amlodipine",
+        "dosage": "10mg",
+        "frequency": "Once daily"
+      },
+      {
+        "name": "Metformin",
+        "dosage": "500mg",
+        "frequency": "Twice daily"
+      },
+      {
+        "name": "Lisinopril",
+        "dosage": "20mg",
+        "frequency": "Once daily"
+      },
+      {
+        "name": "Atorvastatin",
+        "dosage": "40mg",
+        "frequency": "Once daily"
+      }
+    ],
+    "allergies": [
+      {
+        "name": "Penicillin"
+      }
+    ],
+    "statistics": {
+      "temperature": 99.4,
+      "bloodPressure": "150/80",
+      "ECG": "Normal",
+      "SPO2": 98,
+      "respiratoryRate": 10,
+      "bloodGlucose": 177
+    }
+  }
+]

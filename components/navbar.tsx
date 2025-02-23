@@ -2,9 +2,12 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
+import { Button } from "@/components/ui/button"
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,17 +18,24 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 const profileOptions: { title: string; href: string; description: string }[] = [
   {
     title: "Settings",
     href: "/profile/settings",
     description: "Manage your account settings and preferences.",
   },
-  {
-    title: "Patients",
-    href: "/patients",
-    description: "View and manage your patients.",
-  },
+  // {
+  //   title: "Patients",
+  //   href: "/patients",
+  //   description: "View and manage your patients.",
+  // },
   {
     title: "Logout",
     href: "/logout",
@@ -35,18 +45,50 @@ const profileOptions: { title: string; href: string; description: string }[] = [
 
 export function NavBar() {
   return (
-    <div className="bg-opacity-30 backdrop-blur-md p-4 w-full sticky top-0 flex-1 z-10 flex justify-start items-center space-x-4">
-      <Link href="/" passHref className="flex items-center space-x-2 text-xl">
-        <img
-          src="/logo.png"
-          alt="ArthroTrack Logo"
-          className="w-8 h-8 rounded-full"
-          loading="lazy"
-        />
-        <span>ArthroTrack</span>
-      </Link>
-      <NavBarItems />
+    <div  className="backdrop-blur-md p-4 w-full sticky top-0 flex-1 z-10 flex justify-between items-center space-x-4 bg-accent/50">
+      <div className="flex items-center space-x-4">
+        <Link href="/" passHref className="flex items-center space-x-2 text-xl">
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="w-8 h-8 rounded-full"
+            loading="lazy"
+          />
+          <span>ArthroTrack</span>
+        </Link>
+        <NavBarItems />
+      </div>
+      <ModeToggle />
     </div>
+  )
+}
+
+export function ModeToggle() {
+  const { setTheme } = useTheme()
+
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="icon">
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => setTheme("light")}>
+            Light
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("dark")}>
+            Dark
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("system")}>
+            System
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   )
 }
 
@@ -55,9 +97,9 @@ export function NavBarItems() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <Link href="/dashboard" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Home
+              Dashboard
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
@@ -92,13 +134,13 @@ export function NavBarItems() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <Link href="/search" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Search
             </NavigationMenuLink>
           </Link>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   )
