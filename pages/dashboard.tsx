@@ -7,9 +7,9 @@ const Dashboard: React.FC = () => {
     <div className="flex flex-col space-y-4 p-4">
       <h1 className="text-2xl font-bold">Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <PatientLookupCard />  {/* Search works, focus on styling */}
-        <CreatePatientCard />  {/* Placeholder */}
-        <CalendarCard />  {/* Placeholder */}
+        <PatientLookupCard />
+        <CreatePatientCard />
+        <CalendarCard />  {/* Calendar card for operations */}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Pool } from 'pg';
+import { Pool } from 'sqlite3';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL, // Ensure you have this set in your environment

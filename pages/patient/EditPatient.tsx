@@ -9,7 +9,7 @@ export default function EditPatient({ patient, isOpen, onClose, onSave }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedPatient((prev) => ({ ...prev, [name]: value }));
+    setEditedPatient((prev: any) => ({ ...prev, [name]: value }));
   };
 
   return (
