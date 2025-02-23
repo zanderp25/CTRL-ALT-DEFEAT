@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+// Default Patient 
 const CreatePatientCard = () => {
   const [isFormActive, setIsFormActive] = useState(false); // State to control form visibility
   const [patientData, setPatientData] = useState({
@@ -42,9 +43,9 @@ const CreatePatientCard = () => {
           onClick={() => setIsFormActive(true)} // Activate form on click
         >
           <CardHeader>
-            <CardTitle>Create Patient</CardTitle>
+            <CardTitle className="text-4xl font-bold text-center">Create Patient</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col items-center justify-center h-32">
+          <CardContent className="flex flex-col items-center justify-center h-60">
             <p className="text-gray-600 text-center">Click to enroll a new patient</p>
           </CardContent>
         </Card>

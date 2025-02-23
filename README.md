@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🦅 Eagle Hacks 2025
+# ⚕️ ArthroTrack
+<!--
+ ▄▄▄       ██▀███  ▄▄▄█████▓ ██░ ██  ██▀███   ▒█████  ▄▄▄█████▓ ██▀███   ▄▄▄       ▄████▄   ██ ▄█▀
+▒████▄    ▓██ ▒ ██▒▓  ██▒ ▓▒▓██░ ██▒▓██ ▒ ██▒▒██▒  ██▒▓  ██▒ ▓▒▓██ ▒ ██▒▒████▄    ▒██▀ ▀█   ██▄█▒ 
+▒██  ▀█▄  ▓██ ░▄█ ▒▒ ▓██░ ▒░▒██▀▀██░▓██ ░▄█ ▒▒██░  ██▒▒ ▓██░ ▒░▓██ ░▄█ ▒▒██  ▀█▄  ▒▓█    ▄ ▓███▄░ 
+░██▄▄▄▄██ ▒██▀▀█▄  ░ ▓██▓ ░ ░▓█ ░██ ▒██▀▀█▄  ▒██   ██░░ ▓██▓ ░ ▒██▀▀█▄  ░██▄▄▄▄██ ▒▓▓▄ ▄██▒▓██ █▄ 
+ ▓█   ▓██▒░██▓ ▒██▒  ▒██▒ ░ ░▓█▒░██▓░██▓ ▒██▒░ ████▓▒░  ▒██▒ ░ ░██▓ ▒██▒ ▓█   ▓██▒▒ ▓███▀ ░▒██▒ █▄
+ ▒▒   ▓▒█░░ ▒▓ ░▒▓░  ▒ ░░    ▒ ░░▒░▒░ ▒▓ ░▒▓░░ ▒░▒░▒░   ▒ ░░   ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░ ░▒ ▒  ░▒ ▒▒ ▓▒
+  ▒   ▒▒ ░  ░▒ ░ ▒░    ░     ▒ ░▒░ ░  ░▒ ░ ▒░  ░ ▒ ▒░     ░      ░▒ ░ ▒░  ▒   ▒▒ ░  ░  ▒   ░ ░▒ ▒░
+  ░   ▒     ░░   ░   ░       ░  ░░ ░  ░░   ░ ░ ░ ░ ▒    ░        ░░   ░   ░   ▒   ░        ░ ░░ ░ 
+      ░  ░   ░               ░  ░  ░   ░         ░ ░              ░           ░  ░░ ░      ░  ░   
+                                                                                  ░               
+-->
 
-First, run the development server:
+## 🗒️ Table of Contents
+
+- 🤖 [Introduction](#introduction)
+- 🤝 [Team](#team)
+- ⚙️ [Tech Stack](#tech-stack)
+- 🛠️ [Features](#features)
+- 🏃‍♂️ [Quick Start](#quick-start)
+
+
+## 🤖 Introduction <a name="introduction"></a>
+AthroTrack is an advanced medical tracking software designed to enhance surgical safety and streamline workflow. Built with a checklist-driven approach, AthroTrack ensures that every critical step in pre-operation, intraoperation, and post-operation procedures is documented and verified.
+
+Inspired by a 2024 case where a tragic surgical error led to the removal of a liver instead of a spleen, AthroTrack was developed to prevent such mistakes through strict procedural accountability. Each checklist requires dual authentication, mandating signatures from both a nurse and a surgeon before progressing to the next phase.
+
+With AthroTrack, hospitals and surgical centers gain a powerful tool to reinforce best practices, reduce liability, and ultimately save lives.
+
+## 🤝 Team <a name="team"></a>
+- [Drake Walsh](https://www.linkedin.com/in/drakewalsh/) (Design Lead)
+- [Braxton Tillman](https://www.linkedin.com/in/braxtontillman/) (Front-End)
+- [Michael Bryan](https://www.linkedin.com/in/mab5) (Backend)
+- [Zander Picon](https://www.linkedin.com/in/zanderpicon/) (Full-Stack)
+
+## ⚙️ Tech Stack <a name="tech-stack"></a>
+
+- JavaScript
+- TypeScript
+- Node.js
+- Next.js
+- React.js
+- SQLite3
+  
+## 🛠️ Features <a name="features"></a>
+
+- **Pre-Operation, Intraoperation, and Post-Operation Checklists:** Ensures every critical step is followed and documented.
+- **Dual Signature Verification:**  Requires both a nurse and a surgeon to sign off at key stages, preventing errors.
+- **Patient Management System:** Add, search, edit, and manage patient records with ease.
+- **Vitals & Stats Monitoring:**  View and track patient vitals, history, and surgical progress.
+
+## 🏃‍♂️ Quick Start <a name="quick-start"></a>
+
+### Prerequisites <a name="prerequisites"></a>
+
+Before you begin, make sure to install the following:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [yarn](https://yarnpkg.com/)
+
+### Installation <a name="installation"></a>
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/zanderp25/CTRL-ALT-DEFEAT
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd CTRL-ALT-DEFEAT
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Install the required packages:
 
-## Learn More
+```bash
+yarn install
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deploy on Vercel
+Alternatively, you can build the project and run the production server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+yarn build
+yarn start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+6. The production server will be available on port 6350.

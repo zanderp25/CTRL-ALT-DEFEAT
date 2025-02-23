@@ -41,9 +41,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <NavBar />
         <Component {...pageProps} />
-        <footer className="text-center py-4 absolute bottom-0 w-full">
-          <p>&copy; 2025 CTRL-ALT-DEFEAT. All rights reserved.</p>
-        </footer>
+        {/* <footer className="text-center py-4 absolute bottom-0 w-full">
+          <small>&copy; 2025 CTRL-ALT-DEFEAT. All rights reserved.</small>
+        </footer> */}
       </ThemeProvider>
     </div>
   );

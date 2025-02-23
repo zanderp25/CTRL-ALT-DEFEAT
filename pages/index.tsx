@@ -57,40 +57,41 @@ export default function Home() {
       </div>
       <div className="relative h-80 top-4">
         <img src="/hiking.jpg" alt="Hiking Image" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-green-500 opacity-50"></div>
         <div className="absolute inset-0 flex justify-center items-center">
           <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline" className='scale-150'>Log In</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Log In</DialogTitle>
-            <DialogDescription>
-          Insert your CAC to log in.
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleLogin}>
-            <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="cac" className="text-right">
-              CAC
-            </Label>
-            <Input
-              id="cac"
-              type="password"
-              placeholder="Insert your CAC"
-              className="col-span-3"
-              value={cac}
-              onChange={(e) => setCac(e.target.value)}
-            />
-          </div>
-            </div>
-            <DialogFooter>
-          <Button type="submit">Log In</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
+            <DialogTrigger asChild>
+              <Button variant="outline" className='scale-150'>Log In</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Log In</DialogTitle>
+                <DialogDescription>
+                  Insert your CAC to log in.
+                  {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleLogin}>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="cac" className="text-right">
+                      CAC
+                    </Label>
+                    <Input
+                      id="cac"
+                      type="password"
+                      placeholder="Insert your CAC"
+                      className="col-span-3"
+                      value={cac}
+                      onChange={(e) => setCac(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit">Log In</Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
           </Dialog>
         </div>
       </div>

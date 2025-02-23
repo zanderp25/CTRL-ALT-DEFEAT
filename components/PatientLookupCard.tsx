@@ -16,7 +16,7 @@ const PatientLookupCard = () => {
 
   // Function to navigate to the patient's page when their name is clicked
   const handleSelectPatient = (id: string) => {
-    router.push(`/patient/${id}`);
+    router.push(`/patient/${id}`); // Navigate to the patient's page
     setIsSearchActive(false); // Close the search after selecting a patient
   };
 
@@ -29,9 +29,9 @@ const PatientLookupCard = () => {
           onClick={() => setIsSearchActive(true)} // Activate search on click
         >
           <CardHeader>
-            <CardTitle>Patient Lookup</CardTitle>
+            <CardTitle className="text-4xl font-bold text-center">Patient Lookup</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col items-center justify-center h-32">
+          <CardContent className="flex flex-col items-center justify-center h-60">
             <p className="text-gray-600 text-center">Click to search for patients</p>
           </CardContent>
         </Card>

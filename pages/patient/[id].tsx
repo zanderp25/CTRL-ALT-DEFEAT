@@ -1,5 +1,6 @@
-import { SetStateAction, useState } from 'react';
+import { useState, SetStateAction } from 'react';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 import { Card } from '../../components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '../../components/ui/avatar';
 import { Button } from '../../components/ui/button';
@@ -42,16 +43,15 @@ const DeletionRequestAlertDialog = ({ isOpen, onClose }: { isOpen: boolean; onCl
   );
 };
 
-export default function PatientPage() {
+export default function PatientPage({ patientData }: { patientData: any }) {
   const router = useRouter();
-  const { id } = router.query;
 
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [patientData, setPatientData] = useState(patients.find((p) => p.id === Number(id)) || null);
+  const [data, setPatientData] = useState(patientData);
 
   // If no patient found
-  if (!patientData) {
+  if (!data) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <h2 className="text-2xl font-bold text-red-500">Patient Not Found</h2>
@@ -82,14 +82,14 @@ export default function PatientPage() {
           {/* Left Side - Profile Picture & Basic Info */}
           <div className="flex flex-col items-center w-full">
             <Avatar className="w-24 h-24">
-              <AvatarImage src="/sandra.webp" alt={patientData.name} />
-              <AvatarFallback>{patientData.name.charAt(0)}</AvatarFallback>
+              <AvatarImage src="/sandra.webp" alt={data.name} />
+              <AvatarFallback>{data.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="text-center mt-4">
-              <h2 className="text-xl font-semibold">{patientData.name}</h2>
-              <p className="text-gray-500 dark:text-gray-400">Age: {patientData.age}</p>
-              <p className="text-gray-500 dark:text-gray-400">Sex: {patientData.sex}</p>
-              <p className="text-gray-500 dark:text-gray-400">{patientData.medicalHistory}</p>
+              <h2 className="text-xl font-semibold">{data.name}</h2>
+              <p className="text-gray-500 dark:text-gray-400">Age: {data.age}</p>
+              <p className="text-gray-500 dark:text-gray-400">Sex: {data.sex}</p>
+              <p className="text-gray-500 dark:text-gray-400">{data.medicalHistory}</p>
             </div>
           </div>
 
@@ -99,9 +99,9 @@ export default function PatientPage() {
             <div className="w-full lg:w-1/2">
               <h3 className="text-lg font-semibold">Medications</h3>
               <ul className="text-sm text-gray-600 dark:text-gray-300">
-                {patientData.medications.map((med, index) => (
+                {data.medications.map((med: { name: string; dosage: string; frequency: string }, index: number) => (
                   <li key={index}>
-                    {med.name} - {med.dosage} ({med.frequency})
+                  {med.name} - {med.dosage} ({med.frequency})
                   </li>
                 ))}
               </ul>
@@ -111,13 +111,13 @@ export default function PatientPage() {
             <div className="w-full lg:w-1/2">
               <h3 className="text-lg font-semibold">Statistics</h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                <strong>Temperature:</strong> {patientData.statistics.temperature}°F
+                <strong>Temperature:</strong> {data.statistics.temperature}°F
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                <strong>Blood Pressure:</strong> {patientData.statistics.bloodPressure}
+                <strong>Blood Pressure:</strong> {data.statistics.bloodPressure}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                <strong>Blood Glucose:</strong> {patientData.statistics.bloodGlucose} mg/dL
+                <strong>Blood Glucose:</strong> {data.statistics.bloodGlucose} mg/dL
               </p>
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function PatientPage() {
 
         {/* Edit Patient Modal */}
         <EditPatient 
-          patient={patientData} 
+          patient={data} 
           isOpen={isEditOpen} 
           onClose={() => setIsEditOpen(false)} 
           onSave={handleSave} 
@@ -161,3 +161,15 @@ export default function PatientPage() {
     </div>
   );
 }
+
+// Fetch patient data on the server side
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params as { id: string };
+  const patientData = patients.find((p) => p.id === Number(id)) || null;
+
+  return {
+    props: {
+      patientData,
+    },
+  };
+};

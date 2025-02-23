@@ -51,7 +51,7 @@ const CalendarCard = () => {
 
   // Function to navigate to the operation details page
   const handleEventSelect = (event: OperationEvent) => {
-    router.push(`/operation/${event.id}`); // Navigate to operation details
+    router.push(`/patient/${event.id}`); // Navigate to operation details
   };
 
   return (
@@ -62,9 +62,9 @@ const CalendarCard = () => {
           onClick={() => setIsCalendarActive(true)} // Activate calendar on click
         >
           <CardHeader>
-            <CardTitle>Calendar</CardTitle>
+            <CardTitle className="text-4xl font-bold text-center">Calendar</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col items-center justify-center h-32">
+          <CardContent className="flex flex-col items-center justify-center h-60">
             <p className="text-gray-600 text-center">Click to view surgeon's operations</p>
           </CardContent>
         </Card>
