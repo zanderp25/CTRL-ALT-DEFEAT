@@ -61,6 +61,7 @@ Before you begin, make sure to install the following:
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en)
 - [yarn](https://yarnpkg.com/)
+- [sqlite](https://www.sqlite.org/download.html)
 
 ### Installation <a name="installation"></a>
 

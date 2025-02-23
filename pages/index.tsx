@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label"
 
 export default function Home() {
   const [cac, setCac] = useState('');
+  const [pw, setPw] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
 
@@ -23,12 +24,12 @@ export default function Home() {
     event.preventDefault();
     setErrorMessage('');
 
-    const response = await fetch('/api/login', {
+    const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ cac }),
+      body: JSON.stringify({ card_id: cac, password: pw }),
     });
 
     if (response.ok) {
@@ -74,16 +75,27 @@ export default function Home() {
               <form onSubmit={handleLogin}>
                 <div className="grid gap-4 py-4">
                   <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="cac" className="text-right">
+                    <Label htmlFor="card_id" className="text-right">
                       CAC
                     </Label>
                     <Input
-                      id="cac"
-                      type="password"
+                      id="card_id"
+                      type="number"
                       placeholder="Insert your CAC"
                       className="col-span-3"
                       value={cac}
                       onChange={(e) => setCac(e.target.value)}
+                    />
+                    <Label htmlFor="password" className="text-right">
+                      Password
+                    </Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Password"
+                      className="col-span-3"
+                      value={pw}
+                      onChange={(e) => setPw(e.target.value)}
                     />
                   </div>
                 </div>

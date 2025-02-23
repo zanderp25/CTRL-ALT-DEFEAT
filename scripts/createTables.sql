@@ -36,3 +36,7 @@ CREATE TABLE IF NOT EXISTS surgeries (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (patient_id) REFERENCES patients(id)
 );
+
+-- Insert an admin user with id 1234 and password '1234'
+INSERT INTO users (id, name, email, card_id, password_hash, role)
+VALUES (1234, 'admin', 'admin@example.com', '1234', 'hashed_password_1234', 'admin');

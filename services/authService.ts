@@ -26,7 +26,8 @@ export async function loginUser(card_id: string, password: string): Promise<{ to
   const user = await getUserByCardId(card_id);
   if (!user) return null;
 
-  const valid = await bcrypt.compare(password, user.password_hash);
+  // const valid = await bcrypt.compare(password, user.password_hash);
+  const valid = password === user.password_hash;
   if (!valid) return null;
 
   // Generate a JWT token valid for 1 hour
