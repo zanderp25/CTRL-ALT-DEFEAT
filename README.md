@@ -13,6 +13,7 @@
       ░  ░   ░               ░  ░  ░   ░         ░ ░              ░           ░  ░░ ░      ░  ░   
                                                                                   ░               
 -->
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/zanderp25/CTRL-ALT-DEFEAT/badge)](https://securityscorecards.dev/viewer/?uri=github.com/zanderp25/CTRL-ALT-DEFEAT)
 
 ## 🗒️ Table of Contents
 
